@@ -1,4 +1,4 @@
 chit = 10
 chfl = 1.1
-chstr = "HI WOLD"
+chstr = "HI WORLD"
 chboo = True
