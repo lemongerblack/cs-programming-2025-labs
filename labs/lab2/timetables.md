@@ -9,3 +9,5 @@ https://github.com/lemongerblack/cs-programming-2025-labs/blob/main/labs/lab2/ti
 
 # Ссылка расписания на третью неделю
 https://github.com/lemongerblack/cs-programming-2025-labs/blob/main/labs/lab2/timetable_3w.md
+
+![alt text](image-1.png)
