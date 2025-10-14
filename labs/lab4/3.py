@@ -4,5 +4,7 @@ while True:
         int(old)
         print(old * 10.5 if 1 <= old <= 2 else 21 + (old - 2) * 4)
         break
+        if old < 1:
+            print("ведите число больше 0")
     else:
-        print("Ошибка: возраст должен быть не меньше 1" if int(old) < 1 else "Введите число -_-")
+        print("Введите число -_-")
