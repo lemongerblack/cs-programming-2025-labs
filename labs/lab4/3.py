@@ -1,10 +1,14 @@
+def OldD(o):
+    if o <= 2: return 10.5 * o
+    if o > 2: return 21 + ((o - 2) * 4)
+
 while True:
-    old = input("Введите возрост собаки в годах:")
-    if old.isdigit:
-        int(old)
-        print(old * 10.5 if 1 <= old <= 2 else 21 + (old - 2) * 4)
-        break
-        if old < 1:
-            print("ведите число больше 0")
+    otvet = input("Введите возрост собаки в годах:")
+    if otvet.isdigit():
+        if int(otvet) < 1 or int(otvet) > 22:
+            print("Ошибка: Возрост должен быть не меньше 1 или не больше 22")
+        else:
+            print(OldD(int(otvet)))
+            break
     else:
-        print("Введите число -_-")
+        print("Ошибка: Введите возрост используя цифры (:")

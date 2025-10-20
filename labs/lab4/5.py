@@ -6,7 +6,7 @@ if len(p) >= 8:
                   mask += "a"
             elif 64 < ord(p[i]) < 91:
                   mask += "A"
-            elif p[i].isdigit:
+            elif p[i].isdigit():
                   mask += "0"
             else:
                   mask += "_"
