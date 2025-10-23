@@ -11,4 +11,4 @@ for i in range(len(a) - 1):
             a[j], a[j + 1] = a[j + 1], a[j]
     if f == 0:
         break
-print(a)
+print(a[0])
