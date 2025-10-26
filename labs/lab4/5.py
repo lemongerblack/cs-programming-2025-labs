@@ -10,8 +10,16 @@ if len(p) >= 8:
                   mask += "0"
             else:
                   mask += "_"
-if "a" in mask and "A" in mask and "0" in mask and "_" in mask:
-      print("Пароль надежный")
-else:
-      print("Пароль ненадежный: отсутствуют заглавные буквы, числа или специальные символы")
-print(mask)
+
+otvet = []
+
+if "a" not in mask:
+      otvet.append("строчные буквы")
+if "A" not in mask:
+      otvet.append("заглавные буквы")
+if "0" not in mask:
+      otvet.append("числа")
+if "_" not in mask:
+      otvet.append("специальные символы")
+
+print("Надажный пароль" if len(otvet) == 0 else "Отсутствуют: " + ", ".join(otvet))
