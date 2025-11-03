@@ -22,4 +22,4 @@ if "0" not in mask:
 if "_" not in mask:
       otvet.append("специальные символы")
 
-print("Надажный пароль" if len(otvet) == 0 else "Отсутствуют: " + ", ".join(otvet))
+print("Надажный пароль" if len(otvet) == 0 else "Ненадежный пароль отсутствуют: " + ", ".join(otvet))
