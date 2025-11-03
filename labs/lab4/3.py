@@ -6,7 +6,7 @@ while True:
     otvet = input("Введите возрост собаки в годах:")
     if otvet.isdigit():
         if int(otvet) < 1 or int(otvet) > 22:
-            print("Ошибка: Возрост должен быть не меньше 1 или не больше 22")
+            print("Ошибка: нужно ввести возрост от 1 до 22 включительно")
         else:
             print(OldD(int(otvet)))
             break
