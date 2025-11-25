@@ -1,0 +1,1 @@
+a = " ".join([str(i) for i in range(11)])
