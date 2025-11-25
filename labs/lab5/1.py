@@ -1,1 +1,1 @@
-a = " ".join([str(i) for i in range(11)])
+print(" ".join([str(i) for i in range(11)]).replace("3", "30").split())
