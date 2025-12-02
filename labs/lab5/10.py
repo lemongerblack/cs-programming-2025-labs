@@ -3,4 +3,4 @@ s = {}
 for i in a:
     if i[0] not in s:
         s[i[0]] = float(str(sum(i[1]) / 3)[:3])
-print(f"{max(s, key = s.get)} имеет наивысший бал: {s.get(max(s, key = s.get))}")
+print(f"{max(s, key = s.get)} имеет наивысший балл: {s.get(max(s, key = s.get))}")
