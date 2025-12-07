@@ -5,4 +5,4 @@ def f(x):
             break
     else:
         return tuple(sorted(list(x)))
-print(f(eval(input("введите кортедж пж: "))))
+print(f(eval(input("введите кортеж пж: "))))
