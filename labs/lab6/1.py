@@ -13,4 +13,4 @@ elif a[0][-1] == "m":
         print(t * 60)
 else:
     hmc = hmc[::-1]
-    print(t / hmc[eval(a[-1]) ])
+    print(t / hmc[eval(a[-1])])
