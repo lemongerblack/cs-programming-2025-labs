@@ -4,4 +4,4 @@ staff_shifts = [
     {"name": "Researcher Hall", "shift_cost": 150, "shifts": 10}
 ]
 sm = list(map(lambda x: x["shift_cost"] * x["shifts"], staff_shifts))
-print(sm)
+print(max(sm))
