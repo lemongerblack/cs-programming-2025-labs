@@ -20,7 +20,7 @@ def f(s, y):
     return pr
 
         
-a = input("Введите сумму и срок для перевода_").split()
+a = input("Введите сумму и строк для перевода_").split()
 
 p = f(int(a[0]), int(a[1]))
 smm = int(a[0])
