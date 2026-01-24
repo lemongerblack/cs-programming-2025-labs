@@ -1,2 +1,2 @@
-from CharacterCreation import СreatingСharacteristics
-player = СreatingСharacteristics()
+from CharacterCreation import *
+print(СreatingСharacteristics())
