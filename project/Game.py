@@ -14,8 +14,12 @@ def PrCharacteristics(s):
     print("Нынешние статы:", "===============", sep="\n", end="\n", flush=True, delay=0.1)
     for i in s:
         print(i, s[i], sep=' ', end='\n', flush=True, delay=0.09)
+    print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}')
 # Создание персонажа и вывод изначальных статов
 player = СreatingСharacteristics()
+mxhp = player['ЗДОРОВЬЕ']
+mxdef = player['ЗАЩИТА']
+mxatt = player['СИЛА_АТАКИ']
 PrCharacteristics(player)
 # Предыстория начало игры
 histori = '''
@@ -33,4 +37,5 @@ print(histori, sep=' ', end='\n', flush=True, delay=0.08)
 # Код игры
 while player['ЗДОРОВЬЕ'] > 0:
     roomd = roomlvl1()
-    print(roomd)
+    if roomd[0] == 'монстров':
+        pass

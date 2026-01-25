@@ -25,7 +25,6 @@ def roomnoname():
     randomvar = randint(0, 4)
     return [view[randomvar], viewcod[randomvar]]
 
-
 def roomlvl1():
     print('Вы подымаетесь выше и вот развилка...')
     var1 = randint(0, 4)

@@ -3,9 +3,10 @@ from Items import *
 
 iventory = {'1': [], '2': [], '3': [], '4': [], '5': []}
 equipment = []
+weapon = []
 
 def prinvetory():
-    print(f"Ваш ивентарь {iventory}", f"Ваша экиперовка {equipment}", sep='\n', end='\n', flush=True, delay=0.1)
+    print(f"Ваш ивентарь - {iventory}", f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}", sep='\n', end='\n', flush=True, delay=0.1)
 
 def use():
     while True:
@@ -29,7 +30,7 @@ def use():
                         iventory[var] = []
                         prinvetory()
                     else:
-                        print(f"Вы хотите поменять {equipment(0)} на {iventory[var][0]}", "1 - Да", "2 - нет", sep="\n", end="\n", flush=True, delay=0.1)
+                        print(f"Вы хотите поменять {equipment[0]} на {iventory[var][0]}", "1 - Да", "2 - нет", sep="\n", end="\n", flush=True, delay=0.1)
                         while True:
                             playerotv = input("Введите ваш вариант")
                             if playerotv == '1':
@@ -42,6 +43,27 @@ def use():
                                 break
                             else:
                                 print("Выберите возможный вариант 1 или 2")
-                
+                elif 'c' in iventory[var][0]:
+                    if len[weapon] == 0:
+                        weapon.append(iventory[var][0])
+                        player['СИЛА_АТАКИ'] = player['СИЛА_АТАКИ'] + iventory[var][0]['c'][0]
+                        iventory[var] = []
+                        prinvetory()
+                    else:
+                        print(f"Вы хотите поменять {weapon[0]} на {iventory[var][0]}", "1 - Да", "2 - нет", sep="\n", end="\n", flush=True, delay=0.1)
+                        while True:
+                            playerotv = input("Введите ваш вариант")
+                            if playerotv == '1':
+                                weapon = [iventory[var][0]]
+                                player['СИЛА_АТАКИ'] = mxatt + iventory[var][0]['c'][0]
+                                iventory[var] = []
+                                prinvetory()
+                                break
+                            elif playerotv == '2':
+                                break
+                            else:
+                                print("Выберите возможный вариант 1 или 2")
+                elif 'd' in iventory[var][0]:
+                    pass
         except:
             pass 
