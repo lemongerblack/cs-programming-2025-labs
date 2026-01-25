@@ -1,4 +1,6 @@
+from random import randint
 from CharacterCreation import *
+from FloorGeneration import *
 # Функция для интересного вывода текста
 def print(*text, sep=' ', end='\n', flush=False, delay=0.1): 
     from time import sleep 
@@ -30,4 +32,5 @@ histori = '''
 print(histori, sep=' ', end='\n', flush=True, delay=0.08)
 # Код игры
 while player['ЗДОРОВЬЕ'] > 0:
-    pass
+    roomd = roomlvl1()
+    print(roomd)

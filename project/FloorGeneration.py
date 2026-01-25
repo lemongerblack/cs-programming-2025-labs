@@ -1,10 +1,10 @@
 from random import randint
+from Items import *
 from FirstLevelVrgi import *
 
 def roommon():
     n = []
-    for i in range(1, 2):
-        n.append(Monstors1[randint(0, 5)])
+    n.append(Monstors1[randint(0, 5)])
     print(n)
     return mon1(n[0]['ИМЯ'], n[0]['СТАТЫ'][0], n[0]['СТАТЫ'][1], n[0]['СТАТЫ'][2], n[0]['СТАТЫ'][3], n[0]['СТАТЫ'][4])
 
@@ -12,13 +12,18 @@ def roomchil():
     return randint(5, 20)
 
 def roomgold():
-    pass
+    return abcde[randint(0, 4)][randint(0, 4)]
 
 def roomtrap():
-    pass
+    var = randint(1, 2)
+    if var == 1:
+        roommon()
+    else:
+        return randint(1, 5)
 
 def roomnoname():
-    pass
+    randomvar = randint(0, 4)
+    return [view[randomvar], viewcod[randomvar]]
 
 
 def roomlvl1():
@@ -29,15 +34,13 @@ def roomlvl1():
     while True:
         varplayer = input("Ваш выбор_")
         if varplayer == '1':
-            return [var1, eval(var1)]
+            return [view[var1], viewcod[var1]]
             break
         elif varplayer == '2':
-            return [var2, eval(var2)]
+            return [view[var2], viewcod[var2]]
             break
         else:
             varplayer = input("Введите выринт из указанных")
 
 view = ['монстров', 'отдыха', 'сокровищь', 'ловушек', '???']
 viewcod = ['roommon()', 'roomchil()', 'roomgold()', 'roomtrap()', 'roomnoname()']
-
-print(roommon())
