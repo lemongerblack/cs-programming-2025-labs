@@ -3,10 +3,10 @@ from FirstLevelVrgi import *
 
 def roommon():
     n = []
-    for i in range(1, randint(1, 2) + 1):
+    for i in range(1, 2):
         n.append(Monstors1[randint(0, 5)])
     print(n)
-    return mon1(n['ИМЯ'], n['СТАТЫ'][0], n['СТАТЫ'][1], n['СТАТЫ'][2], n['СТАТЫ'][3], n['СТАТЫ'][4])
+    return mon1(n[0]['ИМЯ'], n[0]['СТАТЫ'][0], n[0]['СТАТЫ'][1], n[0]['СТАТЫ'][2], n[0]['СТАТЫ'][3], n[0]['СТАТЫ'][4])
 
 def roomchil():
     return randint(5, 20)
