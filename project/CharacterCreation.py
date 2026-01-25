@@ -41,5 +41,3 @@ def СreatingСharacteristics():
             break
         else:
             print("ОШИБКА: выберите число от 1 до 3, чтобы выбрать расу")
-s = {'b': 1, 'a': 3}
-print(s[2])
