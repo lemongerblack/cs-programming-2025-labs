@@ -29,3 +29,5 @@ histori = '''
 '''
 print(histori, sep=' ', end='\n', flush=True, delay=0.08)
 # Код игры
+while player['ЗДОРОВЬЕ'] > 0:
+    pass

@@ -4,7 +4,7 @@ from FirstLevelVrgi import *
 def roommon():
     n = []
     for i in range(1, randint(1, 2) + 1):
-        n.append(Monstors1[randint(0,5)])
+        n.append(Monstors1[0])
     print(n)
     return n
 
