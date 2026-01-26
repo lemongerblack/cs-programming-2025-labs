@@ -17,6 +17,13 @@ def PrCharacteristics(s):
 # Функция для обозночения повышения этажа
 def floor():
     lvlfloor += 1
+# функция для повышения уровня персонажа
+def playerup():
+    lvlplayer += 1
+    player['ЗДОРОВЬЕ'] += 5
+    player['ЗАЩИТА'] += 1
+    mxhp += 5
+    mxdef += 1
 # Функция для печати выбора действий
 def praction():
     print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
@@ -41,7 +48,7 @@ def fight(lvlfloor):
                     damage = 5 + weapon[0]['c'] + (player['СИЛА_АТАКИ'] // 10)
                 else:
                     damage = 5 + (player['СИЛА_АТАКИ'] // 10)
-                print(f'Ваша значение атаки {kickplayer}, значение защиты у врага {monstor.Defense}', sep='\n', end='\n', flush=True, delay=0.05)
+                print(f'Ваша значение атаки {kickplayer}, значение защиты у врага {monstor.Defense}', sep='\n', end='\n', flush=True, delay=0.005)
                 monstor.TakingDamage(kickplayer, damage)
             elif varplayer == '2':
                 prinvetory()
@@ -51,17 +58,19 @@ def fight(lvlfloor):
                 morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
                 damag = 3
                 monstor.TakingDamage(morkick, damag)
-                print('Не важно был ли нанесен урон. Знай это было подло... ', sep='\n', end='\n', flush=True, delay=0.05)
+                print('Не важно был ли нанесен урон. Знай это было подло... ', sep='\n', end='\n', flush=True, delay=0.005)
             else:
                 attemptplayer = randint(1, 20) + (player['ЛОВКОСТЬ'] // 10)
                 attemmonstors = randint(1, 20) + (monstor.Agility // 10)
                 if attemptplayer > attemmonstors:
-                    print("Вы успешно проскачили мимо него", sep='\n', end='\n', flush=True, delay=0.05)
+                    print("Вы успешно проскачили мимо него", sep='\n', end='\n', flush=True, delay=0.005)
                     monstor.HP = 0
-            
             if monstor.HP != 0:
                 print('Монстр атакует!')
                 monstor.Attacks(player, 0)
+    else:
+        print('Вы прошли комнату!', sep='\n', end='\n', flush=True, delay=0.005)
+    
 # Функция для создания персонажа
 def СreatingСharacteristics():
     name = input('введите имя персонажа_')
@@ -133,6 +142,7 @@ class mon1:
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             print("Вы отдалели эту тварь!", sep='\n', end='\n', flush=True, delay=0.005)
+            point += (5 * lvlfloor)
         else:
              print("Вы начинаете атаковать и, к сожаление промахиваетесь", sep='\n', end='\n', flush=True, delay=0.005)
 # функции определения комнат
@@ -156,8 +166,8 @@ def roomnoname(lvlf):
 
 def roomlvl1():
     print('Вы подымаетесь выше и вот развилка...', sep='\n', end='\n', flush=True, delay=0.005)
-    var1 = randint(0, 4)
-    var2 = randint(0, 4)
+    var1 = randint(0, 20)
+    var2 = randint(0, 20)
     print('Куда вы пройдете дальше?', '=========================', f'1 - комната {view[var1]}', f'2 - комната {view[var2]}', sep='\n', end='\n', flush=True, delay=0.005)
     while True:
         varplayer = input("Ваш выбор_")
@@ -273,13 +283,16 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
             print('Введите вариант 1,2,3,4,5', sep='\n', end='\n', flush=True, delay=0.005)
 # Данные игры
 # монстры
-Monstors1 = [{'ИМЯ': 'багбир', 'СТАТЫ': [20, 20, 7, 13, 7]}, {'ИМЯ': 'темная-слизь', 'СТАТЫ': [10, 11, 5, 15, 4]},
+Monstors1 = [{'ИМЯ': 'багбир', 'СТАТЫ': [20, 20, 9, 13, 7]}, {'ИМЯ': 'темная-слизь', 'СТАТЫ': [10, 11, 5, 15, 4]},
              {'ИМЯ': 'нисшая-тень', 'СТАТЫ': [16, 20, 6, 20, 5]}, {'ИМЯ': 'грязевой-монстр', 'СТАТЫ': [14, 14, 10, 5, 5]},
              {'ИМЯ': 'скелет', 'СТАТЫ': [13, 15, 13, 20, 4]}, {'ИМЯ': 'нисший-демон', 'СТАТЫ': [22, 21, 8, 3, 6]}]
 Monstors2 = []
 Monstors3 = []
 # виды комнат
-view = ['монстров', 'отдыха', 'сокровищь', 'ловушек', '???']
+view = ['монстров', 'монстров', 'монстров', 'монстров', 'монстров',
+        'монстров', 'монстров', 'монстров', 'монстров', 'монстров',
+        'отдыха', 'сокровищь', 'сокровищь', 'ловушек', 'ловушек',
+        'ловушек', '???', '???', '???', '???', '???']
 viewcod = ['roommon()', 'roomchil()', 'roomgold()', 'roomtrap(lvlfloor)', 'roomnoname()']
 # ивентарь
 iventory = {'1': [], '2': [], '3': [], '4': [], '5': []}
@@ -309,11 +322,12 @@ weapon = []
 lvlfloor = 1
 countroom = 0
 end = 0
+lvlplayer = 1
 point = 0
 while player['ЗДОРОВЬЕ'] > 0:
     roomd = roomlvl1()
     if roomd[0] == "???":
-        roomd[0] = view[randint(0, 3)]
+        roomd[0] = view[randint(0, 20)]
 
     if roomd[0] == 'монстров':
         print('Вы вошли в комнату монстров', sep='\n', end='\n', flush=True, delay=0.05)
