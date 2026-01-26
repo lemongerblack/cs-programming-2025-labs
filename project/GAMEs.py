@@ -52,7 +52,7 @@ def fight(lvlfloor):
                 monstor.TakingDamage(kickplayer, damage)
             elif varplayer == '2':
                 prinvetory()
-                use(player, monstor, mxhp, mxdef, mxatt, point)
+                use(player, monstor)
             elif varplayer == '3':
                 fc = input("Ну давай_")
                 morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
@@ -190,10 +190,10 @@ def roomlvl1():
     while True:
         varplayer = input("Ваш выбор_")
         if varplayer == '1':
-            return [view[var1], viewcod[var1]]
+            return [view[var1], 0]
             break
         elif varplayer == '2':
-            return [view[var2], viewcod[var2]]
+            return [view[var2], 0]
             break
         else:
             varplayer = input("Введите выринт из указанных")
@@ -237,7 +237,7 @@ def iven():
             else:
                 break
 
-def use(player, monstor, mxhp, mxdef, mxatt, point):
+def use(player, monstor):
     while True:
         var = input("Выберите какой предмет вы хотите использовать_ ")
         try:
