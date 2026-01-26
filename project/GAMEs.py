@@ -10,7 +10,7 @@ def print(*text, sep=' ', end='\n', flush=False, delay=0.1):
         sleep(delay)
 # Функция для печати статов
 def PrCharacteristics(s):
-    print("Нынешние статы:", "===============", sep="\n", end="\n", flush=True, delay=0.05)
+    print("Нынешние статы:", "===============", f'уровень персонажа: {lvlplayer}', f'количество очков: {point}', sep="\n", end="\n", flush=True, delay=0.05)
     for i in s:
         print(i, s[i], sep=' ', end='\n', flush=True, delay=0.05)
     print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.05)
@@ -65,11 +65,13 @@ def fight(lvlfloor):
                 if attemptplayer > attemmonstors:
                     print("Вы успешно проскачили мимо него", sep='\n', end='\n', flush=True, delay=0.005)
                     monstor.HP = 0
-            if monstor.HP != 0:
+            if monstor.HP > 0:
                 print('Монстр атакует!')
                 monstor.Attacks(player, 0)
     else:
         print('Вы прошли комнату!', sep='\n', end='\n', flush=True, delay=0.005)
+        point += 10
+        lvlp += 10
     
 # Функция для создания персонажа
 def СreatingСharacteristics():
@@ -113,6 +115,21 @@ def СreatingСharacteristics():
             break
         else:
             print("ОШИБКА: выберите число от 1 до 3, чтобы выбрать расу", sep='\n', end='\n', flush=True, delay=0.005)
+# функция для прокачки
+def upppoint():
+    print('Прокачка персонажа, чтобы прокочаться напишите название характеристики и сколько потратите очков:',
+          'пример_ЗДОРОВЬЕ 10', sep='\n', end='\n', flush=True, delay=0.005)
+    print('какие характеристики можно прокачать:', '1 - ЗДОРОВЬЕ', '2 -ЗАЩИТА', '3 - ЛОВКОСТЬ', '4 - ВНИМАТЕЛЬНОСТЬ',
+          sep='\n', end='\n', flush=True, delay=0.005)
+    while True:
+        varr = input('введите как в примере_').split()
+        try:
+            if int(varr[1]) <= point:
+                player[varr[0]] += int(varr[1])
+                point -= int(varr[1])
+                break
+        except:
+            print('Некорректный ввод')
 # класс монстров
 class mon1:
     def __init__(self, Name, HP, Attack, Defense, Agility, Damage):
@@ -143,12 +160,13 @@ class mon1:
             self.HP = 0
             print("Вы отдалели эту тварь!", sep='\n', end='\n', flush=True, delay=0.005)
             point += (5 * lvlfloor)
+            lvlp += (5 * lvlfloor)
         else:
              print("Вы начинаете атаковать и, к сожаление промахиваетесь", sep='\n', end='\n', flush=True, delay=0.005)
 # функции определения комнат
 def roommon():
     n = []
-    n.append(Monstors1[randint(0, 5)])
+    n.append(eval(f'Monstors{str(lvlfloor)}[randint(0, 5)]'))
     return mon1(n[0]['ИМЯ'], n[0]['СТАТЫ'][0], n[0]['СТАТЫ'][1], n[0]['СТАТЫ'][2], n[0]['СТАТЫ'][3], n[0]['СТАТЫ'][4])
 
 def roomchil():
@@ -183,6 +201,17 @@ def roomlvl1():
 def prinvetory():
     print(f"Ваш ивентарь - {iventory}", f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}", sep='\n', end='\n', flush=True, delay=0.05)
 
+def popinvetory():
+    prinvetory()
+    while True:
+        varplayer = input('Какой предмет вы хотите выкинуть(1,2,3,4,5)?')
+        if varplayer not in iventory:
+            print('Введите корректное число от 1 до 5')
+        else:
+            iventory[varplayer] = []
+            break
+    prinvetory
+
 def iven():
     n = roomgold()
     print(f'Вы нашли {n}', sep='\n', end='\n', flush=True, delay=0.005)
@@ -199,7 +228,7 @@ def iven():
                 print('Какой предмет меняете?', '=====================', '1 - 1', '2 - 2', '3 - 3', '4 - 4', '5 - 5', sep='\n', end='\n', flush=True, delay=0.1)
                 while True:
                     varp = input('Выберите какой предмет хотите поменять_')
-                    if varp in '12345':
+                    if varp in iventory:
                         break
                     else:
                         print('Ведите ваш выбор от 1 до 5', sep='\n', end='\n', flush=True, delay=0.005)
@@ -275,6 +304,7 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
                     iventory[var] = []
                 else:
                     point += iventory[var][0]['e']
+                    lvlp += iventory[var][0]['e']
                     iventory[var] = []
             else:
                 print('Эта ячейка ивенторя пуста!', sep='\n', end='\n', flush=True, delay=0.005)
@@ -313,7 +343,6 @@ player = СreatingСharacteristics()
 mxhp = player['ЗДОРОВЬЕ']
 mxdef = player['ЗАЩИТА']
 mxatt = player['СИЛА_АТАКИ']
-PrCharacteristics(player)
 # сюжет
 
 # игра
@@ -323,8 +352,23 @@ lvlfloor = 1
 countroom = 0
 end = 0
 lvlplayer = 1
+lvlp = 0
 point = 0
+PrCharacteristics(player)
 while player['ЗДОРОВЬЕ'] > 0:
+    if end == 4:
+        print("Конец(:")
+        break
+    if lvlp == 100:
+        playerup()
+        lvlp = 0
+        PrCharacteristics(player)
+
+    if countroom >= 13:
+        floor()
+        end += 1
+        countroom = 0
+
     roomd = roomlvl1()
     if roomd[0] == "???":
         roomd[0] = view[randint(0, 20)]
@@ -336,6 +380,7 @@ while player['ЗДОРОВЬЕ'] > 0:
         if 75 <= rn:
             iven()
         PrCharacteristics(player)
+        countroom += 1
     elif roomd[0] == 'отдыха':
         print('Вы вошли в комнату отдыха', sep='\n', end='\n', flush=True, delay=0.05)
         xl = roomchil()
@@ -344,6 +389,7 @@ while player['ЗДОРОВЬЕ'] > 0:
         else:
             player['ЗДОРОВЬЕ'] += xl
         PrCharacteristics(player)
+        countroom += 1
     elif roomd[0] == 'сокровищь':
         print('Вы вошли в комнату сокровищь', sep='\n', end='\n', flush=True, delay=0.05)
         iven()
@@ -354,3 +400,18 @@ while player['ЗДОРОВЬЕ'] > 0:
         print(f'Вы потеряли {roomtrap(lvlfloor)} здоровья', sep='\n', end='\n', flush=True, delay=0.05)
         player['ЗДОРОВЬЕ'] -= roomtrap(lvlfloor)
         PrCharacteristics(player)
+        countroom += 1
+    
+    while True:
+        print('Что будите делать дальше?', '1 - посмотреть ивентарь', '2 - очистить ивентарь', '3 - прокачать навыки', '4 - пойти дальше', sep='\n', end='\n', flush=True, delay=0.05)
+        var = input('Введите ваш выбор_')
+        if var == '1':
+            prinvetory()
+        elif var == '2':
+            popinvetory()
+        elif var == '3':
+            upppoint()
+        elif var == '4':
+            break
+        else:
+            print('Введите корректно свой выбор!')
