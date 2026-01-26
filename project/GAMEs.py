@@ -264,8 +264,8 @@ def use(player, monstor):
                         iventory[var] = []
                         prinvetory()
                 elif 'b' in iventory[var][0]:
-                    if len[equipment] == 0:
-                        equipment.append(iventory[var][0])
+                    if equipment == []:
+                        equipment = [iventory[var][0]]
                         player['ЗАЩИТА'] = player['ЗАЩИТА'] + iventory[var][0]['b']
                         print(f"Вы экиперовали {iventory[var][0]['name']}, ваша защита равна {player['ЗАЩИТА']}", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
@@ -287,8 +287,8 @@ def use(player, monstor):
                             else:
                                 print("Выберите возможный вариант 1 или 2", sep='\n', end='\n', flush=True, delay=0.005)
                 elif 'c' in iventory[var][0]:
-                    if len[weapon] == 0:
-                        weapon.append(iventory[var][0])
+                    if weapon == []:
+                        weapon = [iventory[var][0]]
                         player['СИЛА_АТАКИ'] = player['СИЛА_АТАКИ'] + iventory[var][0]['c'][0]
                         print(f"Теперь ваше оружие {iventory[var][0]['name']}, ваша сила атаки {player['СИЛА_АТАКИ']}", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
