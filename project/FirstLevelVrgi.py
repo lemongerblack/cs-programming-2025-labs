@@ -23,6 +23,7 @@ class mon1:
     def TakingDamage(self, playeratack : int, damage : int):
         if (playeratack > self.Defense) and (self.HP - damage != 0):
             self.HP = self.HP - damage
+            print(f'Вы нанесли {damage} урона!')
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             print("Вы отдалели эту тварь!")

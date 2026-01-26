@@ -14,14 +14,14 @@ def roomchil():
 def roomgold():
     return abcde[randint(0, 4)][randint(0, 4)]
 
-def roomtrap():
+def roomtrap(lvlf):
     var = randint(1, 2)
     if var == 1:
-        roommon()
+        return [view[0], viewcod[0]]
     else:
-        return randint(1, 5)
+        return randint(1, 5 * lvlf)
 
-def roomnoname():
+def roomnoname(lvlf):
     randomvar = randint(0, 4)
     return [view[randomvar], viewcod[randomvar]]
 
@@ -42,4 +42,4 @@ def roomlvl1():
             varplayer = input("Введите выринт из указанных")
 
 view = ['монстров', 'отдыха', 'сокровищь', 'ловушек', '???']
-viewcod = ['roommon()', 'roomchil()', 'roomgold()', 'roomtrap()', 'roomnoname()']
+viewcod = ['roommon()', 'roomchil()', 'roomgold()', 'roomtrap(lvlfloor)', 'roomnoname()']

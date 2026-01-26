@@ -12,7 +12,6 @@ def use():
     while True:
         var = input("Выберите какой предмет вы хотите использовать_ ")
         try:
-            itemsuse = iventory[var][0]
             if len(iventory[var]) > 0:
                 if 'a' in iventory[var][0]:
                     if iventory[var][0]['a'] + player['ЗДОРОВЬЕ'] <= mxhp:

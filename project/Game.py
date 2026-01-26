@@ -1,6 +1,7 @@
 from random import randint
 from CharacterCreation import *
 from FloorGeneration import *
+from Inventory import *
 # Функция для интересного вывода текста
 def print(*text, sep=' ', end='\n', flush=False, delay=0.1): 
     from time import sleep 
@@ -15,6 +16,40 @@ def PrCharacteristics(s):
     for i in s:
         print(i, s[i], sep=' ', end='\n', flush=True, delay=0.09)
     print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}')
+# Функция для обозночения повышения этажа
+def floor():
+    lvlfloor += 1
+# Функция для печати выбора действий
+def praction():
+    print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
+          '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него', sep='\n', end='\n', flush=True, delay=0.1)
+# Функция для проведения боя с монстрами
+def fight(n):
+    for i in range(1, randint(1, 2) + n):
+        monstor = roommon()
+        print(f'Впереди вас {monstor.Name}, пока вас необнорожили ваши действия?')
+        while (monstor.HP != 0) and player['ЗДОРОВЬЕ'] > 0:
+            praction()
+            while True:
+                varplayer = input('Введите ваш вариант_')
+                if varplayer not in '1234':
+                    print('Выберите один из четырех вариантов!')
+                else:
+                    break
+            if varplayer == '1':
+                kickplayer = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
+                if len(weapon) > 0:
+                    damage = 5 + weapon[0]['c'] + (player['СИЛА_АТАКИ'] // 10)
+                else:
+                    damage = 5 + (player['СИЛА_АТАКИ'] // 10)
+                print(f'Ваша значение атаки {kickplayer}, значение защиты у врага {monstor.Defense}', sep='\n', end='\n', flush=True, delay=0.1)
+                monstor.TakingDamage(kickplayer, damage)
+            elif varplayer == '2':
+                prinvetory()
+                use()
+            elif varplayer == '3':
+                pass
+
 # Создание персонажа и вывод изначальных статов
 player = СreatingСharacteristics()
 mxhp = player['ЗДОРОВЬЕ']
@@ -35,7 +70,11 @@ histori = '''
 '''
 print(histori, sep=' ', end='\n', flush=True, delay=0.08)
 # Код игры
+lvlfloor = 1
+countroom = 0
+end = 0
 while player['ЗДОРОВЬЕ'] > 0:
     roomd = roomlvl1()
     if roomd[0] == 'монстров':
-        pass
+        print('Вы вошли в комнату монстров', sep='\n', end='\n', flush=True, delay=0.1)
+        fight(lvlfloor)
