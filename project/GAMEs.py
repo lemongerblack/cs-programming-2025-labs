@@ -27,7 +27,7 @@ def fight(lvlfloor):
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?', sep='\n', end='\n', flush=True, delay=0.005)
         while (monstor.HP > 0) and player['ЗДОРОВЬЕ'] > 0:
-            print(f'Ваше здоровье {player}, здоровье врага {monstor.HP}')
+            print(f'Ваше здоровье {player['ЗДОРОВЬЕ']}, здоровье врага {monstor.HP}', sep='\n', end='\n', flush=True, delay=0.005)
             praction()
             while True:
                 varplayer = input('Введите ваш вариант_')
@@ -206,17 +206,21 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
                 if 'a' in iventory[var][0]:
                     if iventory[var][0]['a'] + player['ЗДОРОВЬЕ'] <= mxhp:
                         player['ЗДОРОВЬЕ'] = player['ЗДОРОВЬЕ'] + iventory[var][0]['a']
+                        print(f"Вы восстановили {iventory[var][0]['a']} здоровья", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
                         prinvetory()
                     else:
                         player['ЗДОРОВЬЕ'] = mxhp
+                        print(f"Вы восстановили {iventory[var][0]['a'] - mxhp} здоровья", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
                         prinvetory()
                 elif 'b' in iventory[var][0]:
                     if len[equipment] == 0:
                         equipment.append(iventory[var][0])
                         player['ЗАЩИТА'] = player['ЗАЩИТА'] + iventory[var][0]['b']
+                        print(f"Вы экиперовали {iventory[var][0]['name']}, ваша защита равна {player['ЗАЩИТА']}", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
+                        print('Вы экиперовали {}')
                         prinvetory()
                     else:
                         print(f"Вы хотите поменять {equipment[0]} на {iventory[var][0]}", "1 - Да", "2 - нет", sep="\n", end="\n", flush=True, delay=0.05)
@@ -225,6 +229,7 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
                             if playerotv == '1':
                                 equipment = [iventory[var][0]]
                                 player['ЗАЩИТА'] = mxdef + iventory[var][0]['b']
+                                print(f"Вы экиперовали {iventory[var][0]['name']}, ваша защита равна {player['ЗАЩИТА']}", sep="\n", end="\n", flush=True, delay=0.05)
                                 iventory[var] = []
                                 prinvetory()
                                 break
@@ -236,6 +241,7 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
                     if len[weapon] == 0:
                         weapon.append(iventory[var][0])
                         player['СИЛА_АТАКИ'] = player['СИЛА_АТАКИ'] + iventory[var][0]['c'][0]
+                        print(f"Теперь ваше оружие {iventory[var][0]['name']}, ваша сила атаки {player['СИЛА_АТАКИ']}", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
                         prinvetory()
                     else:
@@ -245,6 +251,7 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
                             if playerotv == '1':
                                 weapon = [iventory[var][0]]
                                 player['СИЛА_АТАКИ'] = mxatt + iventory[var][0]['c'][0]
+                                print(f"Теперь ваше оружие {iventory[var][0]['name']}, ваша сила атаки {player['СИЛА_АТАКИ']}", sep="\n", end="\n", flush=True, delay=0.05)
                                 iventory[var] = []
                                 prinvetory()
                                 break
@@ -254,6 +261,7 @@ def use(player, monstor, mxhp, mxdef, mxatt, point):
                                 print("Выберите возможный вариант 1 или 2", sep='\n', end='\n', flush=True, delay=0.005)
                 elif 'd' in iventory[var][0]:
                     monstor.HP = monstor.HP - iventory[var][0]['d']
+                    print(f"Вы нанесли {iventory[var][0]['d']} урона", sep="\n", end="\n", flush=True, delay=0.05)
                     iventory[var] = []
                 else:
                     point += iventory[var][0]['e']
