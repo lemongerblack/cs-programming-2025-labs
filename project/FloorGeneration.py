@@ -15,11 +15,7 @@ def roomgold():
     return abcde[randint(0, 4)][randint(0, 4)]
 
 def roomtrap(lvlf):
-    var = randint(1, 2)
-    if var == 1:
-        return [view[0], viewcod[0]]
-    else:
-        return randint(1, 5 * lvlf)
+    return randint(1, 5 * lvlf)
 
 def roomnoname(lvlf):
     randomvar = randint(0, 4)

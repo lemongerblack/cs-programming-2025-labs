@@ -19,6 +19,32 @@ def PrCharacteristics(s):
 # Функция для обозночения повышения этажа
 def floor():
     lvlfloor += 1
+# Функция для получения предмета в ивентарь
+def iven():
+    n = roomgold()
+    print(f'Вы нашли {n}')
+    for i in range(1, 6):
+        if eval(f"iventory['{i}']") == []:
+            eval(f"iventory['{i}']") = n
+            break
+    else:
+        print('Место в ивентаре не достаточно...', 'Будишь менять предметы?', '1 - да', '2 - нет', sep='\n', end='\n', flush=True, delay=0.1)
+        while True:
+            varplayer = input('Введите ваш ответ')
+            if varplayer == '1':
+                prinvetory()
+                print('Какой предмет меняете?', '=====================', '1 - 1', '2 - 2', '3 - 3', '4 - 4', '5 - 5', sep='\n', end='\n', flush=True, delay=0.1)
+                while True:
+                    varp = input('Выберите какой предмет хотите поменять_')
+                    if varp in '12345':
+                        break
+                    else:
+                        print('Ведите ваш выбор от 1 до 5')
+                iventory[varp] = n
+                break
+            else:
+                break
+
 # Функция для печати выбора действий
 def praction():
     print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
@@ -86,6 +112,29 @@ end = 0
 point = 0
 while player['ЗДОРОВЬЕ'] > 0:
     roomd = roomlvl1()
+    if roomd[0] == "???":
+        roomd[0] = view[randint(0, 3)]
+
     if roomd[0] == 'монстров':
         print('Вы вошли в комнату монстров', sep='\n', end='\n', flush=True, delay=0.1)
         fight(lvlfloor)
+        rn = randint(1, 100)
+        if 75 <= rn:
+            iven()
+        PrCharacteristics(player)
+    elif roomd[0] == 'отдыха':
+        print('Вы вошли в комнату отдыха', sep='\n', end='\n', flush=True, delay=0.1)
+        xl = roomchil()
+        if player['ЗДОРОВЬЕ'] + xl > mxhp:
+            player['ЗДОРОВЬЕ'] = mxhp
+        else:
+            player['ЗДОРОВЬЕ'] += xl
+        PrCharacteristics()
+    elif roomd[0] == 'сокровищь':
+        print('Вы вошли в комнату сокровищь', sep='\n', end='\n', flush=True, delay=0.1)
+        iven()
+        prinvetory()
+        PrCharacteristics()
+    elif roomd[0] == 'ловушек':
+        print('Вы вошли в комнату ловушек', sep='\n', end='\n', flush=True, delay=0.1)
+        player['ЗДОРОВЬЕ'] -= roomtrap(lvlfloor)
