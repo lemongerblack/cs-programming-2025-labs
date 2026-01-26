@@ -10,7 +10,7 @@ def print(*text, sep=' ', end='\n', flush=False, delay=0.1):
         sleep(delay)
 # Функция для печати статов
 def PrCharacteristics(s):
-    print("Нынешние статы:", "===============", f'уровень персонажа: {lvlplayer}', f'количество очков: {point}', sep="\n", end="\n", flush=True, delay=0.05)
+    print("Нынешние статы:", "===============", f'уровень персонажа: {lvlplayer}', f'количество очков: {pointr}', sep="\n", end="\n", flush=True, delay=0.05)
     for i in s:
         print(i, s[i], sep=' ', end='\n', flush=True, delay=0.05)
     print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.05)
@@ -30,6 +30,8 @@ def praction():
           '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него', sep='\n', end='\n', flush=True, delay=0.05)
 # Функция для проведения боя с монстрами
 def fight(lvlfloor):
+    global pointr
+    global lvlpr
     for i in range(1, randint(1, 2) + lvlfloor):
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?', sep='\n', end='\n', flush=True, delay=0.005)
@@ -70,8 +72,8 @@ def fight(lvlfloor):
                 monstor.Attacks(player, 0)
     else:
         print('Вы прошли комнату!', sep='\n', end='\n', flush=True, delay=0.005)
-        point += 10
-        lvlp += 10
+        pointr += 10
+        lvlpr += 10
     
 # Функция для создания персонажа
 def СreatingСharacteristics():
@@ -117,16 +119,18 @@ def СreatingСharacteristics():
             print("ОШИБКА: выберите число от 1 до 3, чтобы выбрать расу", sep='\n', end='\n', flush=True, delay=0.005)
 # функция для прокачки
 def upppoint():
+    global pointr
+    sp = ['СИЛА_АТАКИ', 'ЛОВКОСТЬ', 'ВНИМАТЕЛЬНОСТЬ']
     print('Прокачка персонажа, чтобы прокочаться напишите название характеристики и сколько потратите очков:',
           'пример_ЗДОРОВЬЕ 10', sep='\n', end='\n', flush=True, delay=0.005)
-    print('какие характеристики можно прокачать:', '1 - ЗДОРОВЬЕ', '2 -ЗАЩИТА', '3 - ЛОВКОСТЬ', '4 - ВНИМАТЕЛЬНОСТЬ',
-          sep='\n', end='\n', flush=True, delay=0.005)
+    print('какие характеристики можно прокачать:', '1 - СИЛА_АТАКИ', '2 - ЛОВКОСТЬ',
+          '3 - ВНИМАТЕЛЬНОСТЬ', sep='\n', end='\n', flush=True, delay=0.005)
     while True:
         varr = input('введите как в примере_').split()
         try:
-            if int(varr[1]) <= point:
+            if (int(varr[1]) <= pointr) and (varr[0] in sp):
                 player[varr[0]] += int(varr[1])
-                point -= int(varr[1])
+                pointr -= int(varr[1])
                 break
         except:
             print('Некорректный ввод')
@@ -153,14 +157,16 @@ class mon1:
             print("Вы избежали урона! Это отличный шанс!", sep='\n', end='\n', flush=True, delay=0.005)
     
     def TakingDamage(self, playeratack : int, damage : int):
+        global pointr
+        global lvlpr
         if (playeratack > self.Defense) and (self.HP - damage != 0):
             self.HP = self.HP - damage
             print(f'Вы нанесли {damage} урона!', sep='\n', end='\n', flush=True, delay=0.005)
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             print("Вы отдалели эту тварь!", sep='\n', end='\n', flush=True, delay=0.005)
-            point += (5 * lvlfloor)
-            lvlp += (5 * lvlfloor)
+            pointr += (5 * lvlfloor)
+            lvlpr += (5 * lvlfloor)
         else:
              print("Вы начинаете атаковать и, к сожаление промахиваетесь", sep='\n', end='\n', flush=True, delay=0.005)
 # функции определения комнат
@@ -238,6 +244,10 @@ def iven():
                 break
 
 def use(player, monstor):
+    global pointr
+    global lvlpr
+    global equipment
+    global weapon
     while True:
         var = input("Выберите какой предмет вы хотите использовать_ ")
         try:
@@ -259,7 +269,7 @@ def use(player, monstor):
                         player['ЗАЩИТА'] = player['ЗАЩИТА'] + iventory[var][0]['b']
                         print(f"Вы экиперовали {iventory[var][0]['name']}, ваша защита равна {player['ЗАЩИТА']}", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
-                        print('Вы экиперовали {}')
+                        print(f'Вы экиперовали {iventory[var][0]['name']}')
                         prinvetory()
                     else:
                         print(f"Вы хотите поменять {equipment[0]} на {iventory[var][0]}", "1 - Да", "2 - нет", sep="\n", end="\n", flush=True, delay=0.05)
@@ -303,8 +313,8 @@ def use(player, monstor):
                     print(f"Вы нанесли {iventory[var][0]['d']} урона", sep="\n", end="\n", flush=True, delay=0.05)
                     iventory[var] = []
                 else:
-                    point += iventory[var][0]['e']
-                    lvlp += iventory[var][0]['e']
+                    pointr += iventory[var][0]['e']
+                    lvlpr += iventory[var][0]['e']
                     iventory[var] = []
             else:
                 print('Эта ячейка ивенторя пуста!', sep='\n', end='\n', flush=True, delay=0.005)
@@ -352,16 +362,16 @@ lvlfloor = 1
 countroom = 0
 end = 0
 lvlplayer = 1
-lvlp = 0
-point = 0
+lvlpr = 0
+pointr = 0
 PrCharacteristics(player)
 while player['ЗДОРОВЬЕ'] > 0:
     if end == 4:
         print("Конец(:")
         break
-    if lvlp == 100:
+    if lvlpr == 100:
         playerup()
-        lvlp = 0
+        lvlpr = 0
         PrCharacteristics(player)
 
     if countroom >= 13:
@@ -376,6 +386,8 @@ while player['ЗДОРОВЬЕ'] > 0:
     if roomd[0] == 'монстров':
         print('Вы вошли в комнату монстров', sep='\n', end='\n', flush=True, delay=0.05)
         fight(lvlfloor)
+        if player['ЗДОРОВЬЕ'] <= 0:
+            continue
         rn = randint(1, 100)
         if 75 <= rn:
             iven()
@@ -399,6 +411,8 @@ while player['ЗДОРОВЬЕ'] > 0:
         print('Вы вошли в комнату ловушек', sep='\n', end='\n', flush=True, delay=0.05)
         print(f'Вы потеряли {roomtrap(lvlfloor)} здоровья', sep='\n', end='\n', flush=True, delay=0.05)
         player['ЗДОРОВЬЕ'] -= roomtrap(lvlfloor)
+        if player['ЗДОРОВЬЕ'] <= 0:
+            continue
         PrCharacteristics(player)
         countroom += 1
     
