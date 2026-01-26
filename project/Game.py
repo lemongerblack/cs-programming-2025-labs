@@ -46,7 +46,7 @@ def fight(n):
                 monstor.TakingDamage(kickplayer, damage)
             elif varplayer == '2':
                 prinvetory()
-                use(player, monstor, mxhp, mxdef, mxatt)
+                use(player, monstor, mxhp, mxdef, mxatt, point)
             elif varplayer == '3':
                 fc = input("Ну давай_")
                 morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
@@ -83,6 +83,7 @@ print(histori, sep=' ', end='\n', flush=True, delay=0.08)
 lvlfloor = 1
 countroom = 0
 end = 0
+point = 0
 while player['ЗДОРОВЬЕ'] > 0:
     roomd = roomlvl1()
     if roomd[0] == 'монстров':
