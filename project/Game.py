@@ -19,32 +19,6 @@ def PrCharacteristics(s):
 # Функция для обозночения повышения этажа
 def floor():
     lvlfloor += 1
-# Функция для получения предмета в ивентарь
-def iven():
-    n = roomgold()
-    print(f'Вы нашли {n}')
-    for i in range(1, 6):
-        if eval(f"iventory['{i}']") == []:
-            eval(f"iventory['{i}']") = n
-            break
-    else:
-        print('Место в ивентаре не достаточно...', 'Будишь менять предметы?', '1 - да', '2 - нет', sep='\n', end='\n', flush=True, delay=0.1)
-        while True:
-            varplayer = input('Введите ваш ответ')
-            if varplayer == '1':
-                prinvetory()
-                print('Какой предмет меняете?', '=====================', '1 - 1', '2 - 2', '3 - 3', '4 - 4', '5 - 5', sep='\n', end='\n', flush=True, delay=0.1)
-                while True:
-                    varp = input('Выберите какой предмет хотите поменять_')
-                    if varp in '12345':
-                        break
-                    else:
-                        print('Ведите ваш выбор от 1 до 5')
-                iventory[varp] = n
-                break
-            else:
-                break
-
 # Функция для печати выбора действий
 def praction():
     print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
