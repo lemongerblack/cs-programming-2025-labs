@@ -27,7 +27,7 @@ def praction():
 def fight(n):
     for i in range(1, randint(1, 2) + n):
         monstor = roommon()
-        print(f'Впереди вас {monstor.Name}, пока вас необнорожили ваши действия?')
+        print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?')
         while (monstor.HP != 0) and player['ЗДОРОВЬЕ'] > 0:
             praction()
             while True:
@@ -46,7 +46,7 @@ def fight(n):
                 monstor.TakingDamage(kickplayer, damage)
             elif varplayer == '2':
                 prinvetory()
-                use()
+                use(player, monstor, mxhp, mxdef, mxatt)
             elif varplayer == '3':
                 fc = input("Ну давай_")
                 morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)

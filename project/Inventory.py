@@ -8,7 +8,7 @@ weapon = []
 def prinvetory():
     print(f"Ваш ивентарь - {iventory}", f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}", sep='\n', end='\n', flush=True, delay=0.1)
 
-def use():
+def use(player, monstor, mxhp, mxdef, mxatt):
     while True:
         var = input("Выберите какой предмет вы хотите использовать_ ")
         try:
@@ -63,6 +63,8 @@ def use():
                             else:
                                 print("Выберите возможный вариант 1 или 2")
                 elif 'd' in iventory[var][0]:
+                    monstor.HP = monstor.HP - iventory[var][0]['d']
+                else:
                     pass
         except:
             pass 
