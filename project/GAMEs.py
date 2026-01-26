@@ -408,9 +408,10 @@ while player['ЗДОРОВЬЕ'] > 0:
         prinvetory()
         PrCharacteristics(player)
     elif roomd[0] == 'ловушек':
+        damages = roomtrap(lvlfloor)
         print('Вы вошли в комнату ловушек', sep='\n', end='\n', flush=True, delay=0.05)
-        print(f'Вы потеряли {roomtrap(lvlfloor)} здоровья', sep='\n', end='\n', flush=True, delay=0.05)
-        player['ЗДОРОВЬЕ'] -= roomtrap(lvlfloor)
+        print(f'Вы потеряли {damages} здоровья', sep='\n', end='\n', flush=True, delay=0.05)
+        player['ЗДОРОВЬЕ'] -= damages
         if player['ЗДОРОВЬЕ'] <= 0:
             continue
         PrCharacteristics(player)
