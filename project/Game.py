@@ -48,7 +48,17 @@ def fight(n):
                 prinvetory()
                 use()
             elif varplayer == '3':
-                pass
+                fc = input("Ну давай_")
+                morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
+                damag = 3
+                monstor.TakingDamage(morkick, damag)
+                print('Не важно был ли нанесен урон. Знай это было подло... ', sep='\n', end='\n', flush=True, delay=0.1)
+            else:
+                attemptplayer = randint(1, 20) + (player['ЛОВКОСТЬ'] // 10)
+                attemmonstors = randint(1, 20) + (monstor.Agility // 10)
+                if attemptplayer > attemmonstors:
+                    print("Вы успешно проскачили мимо него", sep='\n', end='\n', flush=True, delay=0.1)
+                    monstor.HP = 0
 
 # Создание персонажа и вывод изначальных статов
 player = СreatingСharacteristics()
