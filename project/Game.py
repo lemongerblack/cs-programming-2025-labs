@@ -59,6 +59,10 @@ def fight(lvlfloor):
                 if attemptplayer > attemmonstors:
                     print("Вы успешно проскачили мимо него", sep='\n', end='\n', flush=True, delay=0.1)
                     monstor.HP = 0
+            
+            if monstor.HP != 0:
+                print('Монстр атакует!')
+                monstor.Attacks(player, 0)
 
 # Создание персонажа и вывод изначальных статов
 player = СreatingСharacteristics()
