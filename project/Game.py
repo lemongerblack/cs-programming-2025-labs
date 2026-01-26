@@ -1,6 +1,6 @@
 from random import randint
-from CharacterCreation import *
 from Inventory import *
+from CharacterCreation import *
 from FloorGeneration import *
 # Функция для интересного вывода текста
 def print(*text, sep=' ', end='\n', flush=False, delay=0.1): 
