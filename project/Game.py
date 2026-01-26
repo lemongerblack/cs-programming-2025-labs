@@ -1,6 +1,6 @@
 from random import randint
-from Inventory import *
 from CharacterCreation import *
+from Inventory import *
 from FloorGeneration import *
 # Функция для интересного вывода текста
 def print(*text, sep=' ', end='\n', flush=False, delay=0.1): 
@@ -15,7 +15,7 @@ def PrCharacteristics(s):
     print("Нынешние статы:", "===============", sep="\n", end="\n", flush=True, delay=0.1)
     for i in s:
         print(i, s[i], sep=' ', end='\n', flush=True, delay=0.09)
-    print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}')
+    print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.1)
 # Функция для обозночения повышения этажа
 def floor():
     lvlfloor += 1
