@@ -3,8 +3,6 @@ from Items import *
 from FloorGeneration import *
 
 iventory = {'1': [], '2': [], '3': [], '4': [], '5': []}
-equipment = []
-weapon = []
 
 def prinvetory():
     print(f"Ваш ивентарь - {iventory}", f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}", sep='\n', end='\n', flush=True, delay=0.1)

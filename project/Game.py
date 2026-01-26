@@ -24,8 +24,8 @@ def praction():
     print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
           '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него', sep='\n', end='\n', flush=True, delay=0.1)
 # Функция для проведения боя с монстрами
-def fight(n):
-    for i in range(1, randint(1, 2) + n):
+def fight(lvlfloor):
+    for i in range(1, randint(1, 2) + lvlfloor):
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?')
         while (monstor.HP != 0) and player['ЗДОРОВЬЕ'] > 0:
@@ -80,6 +80,8 @@ PrCharacteristics(player)
 #'''
 #print(histori, sep=' ', end='\n', flush=True, delay=0.08)
 # Код игры
+equipment = []
+weapon = []
 lvlfloor = 1
 countroom = 0
 end = 0
