@@ -12,7 +12,7 @@ def print(*text, sep=' ', end='\n', flush=False, delay=0.1):
 def PrCharacteristics(s):
     print("Нынешние статы:", "===============", sep="\n", end="\n", flush=True, delay=0.05)
     for i in s:
-        print(i, s[i], sep=' ', end='\n', flush=True, delay=0.09)
+        print(i, s[i], sep=' ', end='\n', flush=True, delay=0.05)
     print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.05)
 # Функция для обозночения повышения этажа
 def floor():
@@ -26,7 +26,8 @@ def fight(lvlfloor):
     for i in range(1, randint(1, 2) + lvlfloor):
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?', sep='\n', end='\n', flush=True, delay=0.005)
-        while (monstor.HP != 0) and player['ЗДОРОВЬЕ'] > 0:
+        while (monstor.HP > 0) and player['ЗДОРОВЬЕ'] > 0:
+            print(f'Ваше здоровье {player}, здоровье врага {monstor.HP}')
             praction()
             while True:
                 varplayer = input('Введите ваш вариант_')
@@ -325,7 +326,7 @@ while player['ЗДОРОВЬЕ'] > 0:
         print('Вы вошли в комнату сокровищь', sep='\n', end='\n', flush=True, delay=0.05)
         iven()
         prinvetory()
-        PrCharacteristics()
+        PrCharacteristics(player)
     elif roomd[0] == 'ловушек':
         print('Вы вошли в комнату ловушек', sep='\n', end='\n', flush=True, delay=0.05)
         print(f'Вы потеряли {roomtrap(lvlfloor)} здоровья', sep='\n', end='\n', flush=True, delay=0.05)
