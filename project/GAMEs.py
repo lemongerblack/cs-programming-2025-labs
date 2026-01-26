@@ -16,6 +16,7 @@ def PrCharacteristics(s):
     print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.005)
 # Функция для обозночения повышения этажа
 def floor():
+    global lvlfloor
     lvlfloor += 1
 # функция для повышения уровня персонажа
 def playerup():
