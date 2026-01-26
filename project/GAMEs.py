@@ -10,10 +10,10 @@ def print(*text, sep=' ', end='\n', flush=False, delay=0.1):
         sleep(delay)
 # Функция для печати статов
 def PrCharacteristics(s):
-    print("Нынешние статы:", "===============", f'уровень персонажа: {lvlplayer}', f'количество очков: {pointr}', sep="\n", end="\n", flush=True, delay=0.05)
+    print("Нынешние статы:", "===============", f'уровень персонажа: {lvlplayer}', f'количество очков: {pointr}', sep="\n", end="\n", flush=True, delay=0.005)
     for i in s:
-        print(i, s[i], sep=' ', end='\n', flush=True, delay=0.05)
-    print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.05)
+        print(i, s[i], sep=' ', end='\n', flush=True, delay=0.005)
+    print(f'Максимально количество здоровья: {mxhp}', f'Максимальное количество защиты: {mxdef}', sep="\n", end="\n", flush=True, delay=0.005)
 # Функция для обозночения повышения этажа
 def floor():
     lvlfloor += 1
@@ -27,7 +27,7 @@ def playerup():
 # Функция для печати выбора действий
 def praction():
     print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
-          '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него', sep='\n', end='\n', flush=True, delay=0.05)
+          '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него', sep='\n', end='\n', flush=True, delay=0.005)
 # Функция для проведения боя с монстрами
 def fight(lvlfloor):
     global pointr
@@ -205,7 +205,7 @@ def roomlvl1():
             varplayer = input("Введите выринт из указанных")
 # функции для ивенторя
 def prinvetory():
-    print(f"Ваш ивентарь - {iventory}", f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}", sep='\n', end='\n', flush=True, delay=0.05)
+    print(f"Ваш ивентарь - {iventory}", f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}", sep='\n', end='\n', flush=True, delay=0.005)
 
 def popinvetory():
     prinvetory()
@@ -226,12 +226,12 @@ def iven():
             iventory[str(i)] = [n]
             break
     else:
-        print('Место в ивентаре не достаточно...', 'Будишь менять предметы?', '1 - да', '2 - нет', sep='\n', end='\n', flush=True, delay=0.05)
+        print('Место в ивентаре не достаточно...', 'Будишь менять предметы?', '1 - да', '2 - нет', sep='\n', end='\n', flush=True, delay=0.005)
         while True:
             varplayer = input('Введите ваш ответ')
             if varplayer == '1':
                 prinvetory()
-                print('Какой предмет меняете?', '=====================', '1 - 1', '2 - 2', '3 - 3', '4 - 4', '5 - 5', sep='\n', end='\n', flush=True, delay=0.1)
+                print('Какой предмет меняете?', '=====================', '1 - 1', '2 - 2', '3 - 3', '4 - 4', '5 - 5', sep='\n', end='\n', flush=True, delay=0.005)
                 while True:
                     varp = input('Выберите какой предмет хотите поменять_')
                     if varp in iventory:
@@ -255,12 +255,12 @@ def use(player, monstor):
                 if 'a' in iventory[var][0]:
                     if iventory[var][0]['a'] + player['ЗДОРОВЬЕ'] <= mxhp:
                         player['ЗДОРОВЬЕ'] = player['ЗДОРОВЬЕ'] + iventory[var][0]['a']
-                        print(f"Вы восстановили {iventory[var][0]['a']} здоровья", sep="\n", end="\n", flush=True, delay=0.05)
+                        print(f"Вы восстановили {iventory[var][0]['a']} здоровья", sep="\n", end="\n", flush=True, delay=0.005)
                         iventory[var] = []
                         prinvetory()
                     else:
                         player['ЗДОРОВЬЕ'] = mxhp
-                        print(f"Вы восстановили {iventory[var][0]['a'] - mxhp} здоровья", sep="\n", end="\n", flush=True, delay=0.05)
+                        print(f"Вы восстановили {iventory[var][0]['a'] - mxhp} здоровья", sep="\n", end="\n", flush=True, delay=0.005)
                         iventory[var] = []
                         prinvetory()
                 elif 'b' in iventory[var][0]:
