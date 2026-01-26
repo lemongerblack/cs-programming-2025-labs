@@ -13,8 +13,8 @@ def iven():
     n = roomgold()
     print(f'Вы нашли {n}')
     for i in range(1, 6):
-        if eval(f"iventory['{i}']") == []:
-            eval(f"iventory['{i}']") = [n]
+        if iventory[str(i)] == []:
+            iventory[str(i)] = [n]
             break
     else:
         print('Место в ивентаре не достаточно...', 'Будишь менять предметы?', '1 - да', '2 - нет', sep='\n', end='\n', flush=True, delay=0.1)
