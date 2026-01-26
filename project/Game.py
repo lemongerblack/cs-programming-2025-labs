@@ -113,3 +113,4 @@ while player['ЗДОРОВЬЕ'] > 0:
         print('Вы вошли в комнату ловушек', sep='\n', end='\n', flush=True, delay=0.1)
         print(f'Вы потеряли {roomtrap(lvlfloor)}', sep='\n', end='\n', flush=True, delay=0.1)
         player['ЗДОРОВЬЕ'] -= roomtrap(lvlfloor)
+        PrCharacteristics()
