@@ -15,7 +15,13 @@
 #
 #'''
 #print(histori, sep=' ', end='\n', flush=True, delay=0.08) 
+#
+#
+#p = {'name': 'moloko', 'a': 5}
+#print('a' in p)
 
-
-p = {'name': 'moloko', 'a': 5}
-print('a' in p)
+T = int(input())
+S = int(input())
+stp = (T * 6) + (S * 40)
+stu = T + S
+print('ног ', stp, ', голов ', stu, '.', sep='')
