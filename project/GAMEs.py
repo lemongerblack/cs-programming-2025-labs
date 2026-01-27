@@ -20,6 +20,7 @@ def floor():
     lvlfloor += 1
 # функция для повышения уровня персонажа
 def playerup():
+    global lvlplayer
     lvlplayer += 1
     player['ЗДОРОВЬЕ'] += 5
     player['ЗАЩИТА'] += 1
@@ -73,8 +74,8 @@ def fight(lvlfloor):
                 monstor.Attacks(player, 0)
     else:
         print('Вы прошли комнату!', sep='\n', end='\n', flush=True, delay=0.005)
-        pointr += 10
-        lvlpr += 10
+        pointr += 5
+        lvlpr += 5
     
 # Функция для создания персонажа
 def СreatingСharacteristics():
@@ -166,8 +167,8 @@ class mon1:
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             print("Вы отдалели эту тварь!", sep='\n', end='\n', flush=True, delay=0.005)
-            pointr += (5 * lvlfloor)
-            lvlpr += (5 * lvlfloor)
+            pointr += (3 * lvlfloor)
+            lvlpr += (3 * lvlfloor)
         else:
              print("Вы начинаете атаковать и, к сожаление промахиваетесь", sep='\n', end='\n', flush=True, delay=0.005)
 # функции определения комнат
@@ -289,7 +290,7 @@ def use(player, monstor):
                 elif 'c' in iventory[var][0]:
                     if weapon == []:
                         weapon = [iventory[var][0]]
-                        player['СИЛА_АТАКИ'] = player['СИЛА_АТАКИ'] + iventory[var][0]['c'][0]
+                        player['СИЛА_АТАКИ'] = player['СИЛА_АТАКИ'] + iventory[var][0]['c']
                         print(f"Теперь ваше оружие {iventory[var][0]['name']}, ваша сила атаки {player['СИЛА_АТАКИ']}", sep="\n", end="\n", flush=True, delay=0.05)
                         iventory[var] = []
                         prinvetory()
