@@ -101,7 +101,7 @@ def upppoint():
     while True:
         varr = input('Ваш выбор и через пробел сколько очков_').split()
         try:
-            player[sp[varr[0] - 1]] += varr[1]
+            player[sp[int(varr[0]) - 1]] += int(varr[1])
             break
         except:
             print('Некорректный ввод')
@@ -199,7 +199,7 @@ def popinvetory():
 
 def iven():
     n = roomgold()
-    print(f'Вы нашли {n}')
+    print(f'Вы нашли {n['name']}')
     for i in range(1, 6):
         if iventory[str(i)] == []:
             iventory[str(i)] = [n]
@@ -222,7 +222,7 @@ def iven():
             else:
                 break
 
-def ause():
+def ause(var):
     if iventory[var][0]['a'] + player['ЗДОРОВЬЕ'] <= mxhp:
         player['ЗДОРОВЬЕ'] = player['ЗДОРОВЬЕ'] + iventory[var][0]['a']
         print(f"Вы восстановили {iventory[var][0]['a']} здоровья")
@@ -234,7 +234,7 @@ def ause():
         iventory[var] = []
         prinvetory()
 
-def buse():
+def buse(var):
     global equipment
     if equipment == []:
         equipment = [iventory[var][0]]
@@ -258,7 +258,7 @@ def buse():
             else:
                 print("Выберите возможный вариант 1 или 2")
 
-def cuse():
+def cuse(var):
     global weapon
     if weapon == []:
         weapon = [iventory[var][0]]
@@ -282,12 +282,12 @@ def cuse():
             else:
                 print("Выберите возможный вариант 1 или 2")
 
-def duse(monstor):
+def duse(var, monstor):
     monstor.HP = monstor.HP - iventory[var][0]['d']
     print(f"Вы нанесли {iventory[var][0]['d']} урона")
     iventory[var] = []
 
-def euse():
+def euse(var):
     global pointr
     global lvlpr
     pointr += iventory[var][0]['e']
@@ -300,15 +300,15 @@ def use(player, monstor):
         try:
             if len(iventory[var]) > 0:
                 if 'a' in iventory[var][0]:
-                    ause()
+                    ause(var)
                 elif 'b' in iventory[var][0]:
-                    buse()
+                    buse(var)
                 elif 'c' in iventory[var][0]:
-                    cuse()
+                    cuse(var)
                 elif 'd' in iventory[var][0]:
-                    duse(monstor)
+                    duse(var, monstor)
                 elif 'e' in iventory[var][0]:
-                    euse()
+                    euse(var)
             else:
                 print('Эта ячейка ивенторя пуста!')
                 break
@@ -389,6 +389,9 @@ while player['ЗДОРОВЬЕ'] > 0:
     roomd = roomlvl1()
     if roomd[0] == "???":
         roomd[0] = view[randint(0, 20)]
+
+    if roomd[0] == "???":
+        roomd[0] = view[13]
 
     if roomd[0] == 'монстров':
         print('Вы вошли в комнату монстров')
