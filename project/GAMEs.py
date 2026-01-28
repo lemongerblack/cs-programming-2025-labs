@@ -181,7 +181,7 @@ def prinvetory():
     print('ваш ивентарь')
     for i in range(1, 6):
         if iventory[str(i)] != []:
-            print(f'{i} {iventory[str(i)]['name']}')
+            print(f'{i} {iventory[str(i)][0]['name']}')
         else:
             print(f'{i} {iventory[str(i)]}')
     print(f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}")
