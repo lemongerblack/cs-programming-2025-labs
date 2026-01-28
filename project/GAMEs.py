@@ -180,7 +180,10 @@ iventory = {'1': [], '2': [], '3': [], '4': [], '5': []}
 def prinvetory():
     print('ваш ивентарь')
     for i in range(1, 6):
-        print(f'{i} {iventory[str(i)]['name']}')
+        if iventory[str(i)] != []:
+            print(f'{i} {iventory[str(i)]['name']}')
+        else:
+            print(f'{i} {iventory[str(i)]}')
     print(f"Ваша экиперовка - {equipment}", f"Ваше оружие - {weapon}")
 
 def popinvetory():
