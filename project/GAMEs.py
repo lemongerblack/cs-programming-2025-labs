@@ -114,17 +114,18 @@ def СreatingСharacteristics():
 # функция для прокачки
 def upppoint():
     global pointr
+    print(f'Ваши очки опыта {pointr}')
     sp = ['СИЛА_АТАКИ', 'ЛОВКОСТЬ', 'ВНИМАТЕЛЬНОСТЬ']
     print('какие характеристики можно прокачать:', '1 - СИЛА_АТАКИ', '2 - ЛОВКОСТЬ', '3 - ВНИМАТЕЛЬНОСТЬ')
     while True:
         varr = input('Ваш выбор и через пробел сколько очков_').split()
         try:
-            if pointr == 0:
-                break
             if pointr - int(varr[1]) >= 0:
                 player[sp[int(varr[0]) - 1]] += int(varr[1])
                 pointr -= int(varr[1])
                 break
+            elif pointr == 0:
+                print('У вас нет очков опыта, чтобы прокачать навыки')
             else:
                 print('у вас столько очков нет!')
         except:
