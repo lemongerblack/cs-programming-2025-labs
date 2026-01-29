@@ -35,6 +35,8 @@ def fight(lvlfloor):
     global pointr
     global lvlpr
     for _ in range(1, randint(2, 3) + (lvlfloor - 1)):
+        if player['ЗДОРОВЬЕ'] <= 0:
+            continue
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?')
         v = 0
