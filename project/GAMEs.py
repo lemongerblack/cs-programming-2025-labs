@@ -29,29 +29,30 @@ def playerup():
 # Функция для печати выбора действий
 def praction():
     print('Выберите действие:', '==================', '1 - Атаковать', '2 - Использовать предмет',
-          '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него')
+          '3 - Оскорбить монстра', '4 - Попробовать проскочить мимо него', '5 - Осмотреться')
 # Функция для проведения боя с монстрами
 def fight(lvlfloor):
     global pointr
     global lvlpr
-    for i in range(1, randint(1, 2) + lvlfloor):
+    for _ in range(1, randint(1, 2) + lvlfloor):
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?')
+        v = 0
         while (monstor.HP > 0) and player['ЗДОРОВЬЕ'] > 0:
             print(f'Ваше здоровье {player['ЗДОРОВЬЕ']}, здоровье врага {monstor.HP}')
             praction()
             while True:
                 varplayer = input('Введите ваш вариант_')
-                if varplayer not in '1234':
+                if varplayer not in ['1', '2', '3', '4', '5']:
                     print('Выберите один из четырех вариантов!')
                 else:
                     break
             if varplayer == '1':
                 kickplayer = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
                 if len(weapon) > 0:
-                    damage = 5 + weapon[0]['c'] + (player['СИЛА_АТАКИ'] // 10)
+                    damage = 5 + weapon[0]['c'] + (player['СИЛА_АТАКИ'] // 10) + v
                 else:
-                    damage = 5 + (player['СИЛА_АТАКИ'] // 10)
+                    damage = 5 + (player['СИЛА_АТАКИ'] // 10) + v
                 print(f'Ваша значение атаки {kickplayer}, значение защиты у врага {monstor.Defense}')
                 monstor.TakingDamage(kickplayer, damage)
             elif varplayer == '2':
@@ -63,12 +64,29 @@ def fight(lvlfloor):
                 damag = 3
                 monstor.TakingDamage(morkick, damag)
                 print('Не важно был ли нанесен урон. Знай это было подло... ')
-            else:
+            elif varplayer == '4':
                 attemptplayer = randint(1, 20) + (player['ЛОВКОСТЬ'] // 10)
-                attemmonstors = randint(1, 20) + (monstor.Agility // 10)
+                attemmonstors = randint(1, 20) + (monstor.Agility // 10) + lvlfloor
                 if attemptplayer > attemmonstors:
                     print("Вы успешно проскачили мимо него")
+                    player['ЛОВКОСТЬ'] -= (4 + lvlfloor)
+                    print(f'ваша ЛОВКОСТЬ была уменьшина на {4 + lvlfloor}')
                     monstor.HP = 0
+                else:
+                    print(f'К сожалению {monstor.Name} не пропускает вас')
+                    player['ЛОВКОСТЬ'] -= 1
+                    print('ваша ЛОВКОСТЬ была уменьшина на 1')
+            elif varplayer == '5':
+                inspection = randint(1, 20) + player['ВНИМАТЕЛЬНОСТЬ']
+                if (inspection > monstor.Defense) and (v == 0):
+                    v = 2 + player['ВНИМАТЕЛЬНОСТЬ']
+                    print(f'Вы нашли слабое место соперника, теперь ваш урон по нему увеличен на {v}!')
+                    player['ВНИМАТЕЛЬНОСТЬ'] -= (3 + lvlfloor)
+                    print(f'Ваша Внимательность была уменьшина на {3 + lvlfloor}')
+                else:
+                    player['ВНИМАТЕЛЬНОСТЬ'] -= 1
+                    print('Ваша Внимательность была уменьшина на 1')
+
             if monstor.HP > 0:
                 print('Монстр атакует!')
                 monstor.Attacks(player, 0)
@@ -101,8 +119,12 @@ def upppoint():
     while True:
         varr = input('Ваш выбор и через пробел сколько очков_').split()
         try:
-            player[sp[int(varr[0]) - 1]] += int(varr[1])
-            break
+            if pointr - int(varr[1]) >= 0:
+                player[sp[int(varr[0]) - 1]] += int(varr[1])
+                pointr -= int(varr[1])
+                break
+            else:
+                print('у вас столько очков нет!')
         except:
             print('Некорректный ввод')
 # класс монстров
@@ -117,7 +139,7 @@ class mon1:
 
     def Attacks(self, player, evade):
         kick = randint(1, 20)
-        damager = randint(1, self.Damage)
+        damager = randint(self.Damage // 2, self.Damage)
         if (evade > 0) and ((kick + (self.Attack // 10)) > evade):
             player["ЗДОРОВЬЕ"] = player["ЗДОРОВЬЕ"] - damager
             print(f"Вы получили - {damager} урона")
@@ -133,13 +155,19 @@ class mon1:
         if (playeratack > self.Defense) and (self.HP - damage != 0):
             self.HP = self.HP - damage
             print(f'Вы нанесли {damage} урона!')
+            player['СИЛА_АТАКИ'] -= (2 + lvlfloor)
+            print(f'Ваша СИЛА_АТАКИ была уменьшина на {2 + lvlfloor}')
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             print("Вы отдалели эту тварь!")
-            pointr += (3 * lvlfloor)
-            lvlpr += (3 * lvlfloor)
+            player['СИЛА_АТАКИ'] -= (2 + lvlfloor)
+            print(f'Ваша СИЛА_АТАКИ была уменьшина на {2 + lvlfloor}')
+            pointr += (lvlfloor) + 1
+            lvlpr += (lvlfloor) + 1
         else:
-             print("Вы начинаете атаковать и, к сожаление промахиваетесь")
+             print("Вам к сожалению не удается нанести урон...")
+             player['СИЛА_АТАКИ'] -= 1
+             print(f'Ваша СИЛА_АТАКИ была уменьшина на 1')
 # функции определения комнат
 def roommon():
     n = []
