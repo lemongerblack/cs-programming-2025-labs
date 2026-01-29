@@ -157,12 +157,12 @@ class mon1:
     def TakingDamage(self, playeratack : int, damage : int):
         global pointr
         global lvlpr
-        if (playeratack > self.Defense) and (self.HP - damage != 0):
+        if (playeratack >= self.Defense) and (self.HP - damage != 0):
             self.HP = self.HP - damage
             print(f'Вы нанесли {damage} урона!')
             player['СИЛА_АТАКИ'] -= (1 + lvlfloor)
             print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
-        elif (playeratack > self.Defense) and (self.HP - damage <= 0):
+        elif (playeratack >= self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             player['СИЛА_АТАКИ'] -= (1 + lvlfloor)
             print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
