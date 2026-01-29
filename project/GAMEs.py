@@ -34,7 +34,7 @@ def praction():
 def fight(lvlfloor):
     global pointr
     global lvlpr
-    for _ in range(1, randint(1, 2) + (lvlfloor - 1)):
+    for _ in range(1, randint(2, 3) + (lvlfloor - 1)):
         monstor = roommon()
         print(f'Впереди вас {monstor.Name}, пока вас не обнаружили, ваши действия?')
         v = 0
@@ -90,6 +90,7 @@ def fight(lvlfloor):
             if monstor.HP > 0:
                 print('Монстр атакует!')
                 monstor.Attacks(player, 0)
+        print('Вы одалели эту тварь!')
     else:
         print('Вы прошли комнату!')
         pointr += 6 + (lvlfloor * 2)
@@ -163,7 +164,6 @@ class mon1:
             print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
-            print("Вы отдалели эту тварь!")
             player['СИЛА_АТАКИ'] -= (1 + lvlfloor)
             print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
             pointr += (lvlfloor) + 3
