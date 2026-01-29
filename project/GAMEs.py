@@ -438,7 +438,7 @@ while player['ЗДОРОВЬЕ'] > 0:
     if end == 4:
         print(continues)
         break
-    if lvlpr == 30 * lvlplayer:
+    if lvlpr >= 30 * lvlplayer:
         playerup()
         lvlpr = 0
         PrCharacteristics(player)
