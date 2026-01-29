@@ -22,8 +22,8 @@ def floor():
 def playerup():
     global lvlplayer
     lvlplayer += 1
-    player['ЗДОРОВЬЕ'] += 5
-    player['ЗАЩИТА'] += 1
+    player['ЗДОРОВЬЕ'] += 5 * lvlplayer
+    player['ЗАЩИТА'] += 1 + lvlplayer
     mxhp += 5
     mxdef += 1
 # Функция для печати выбора действий
@@ -404,7 +404,7 @@ while player['ЗДОРОВЬЕ'] > 0:
     if end == 4:
         print("Конец(:")
         break
-    if lvlpr == 100:
+    if lvlpr == 50 * lvlplayer:
         playerup()
         lvlpr = 0
         PrCharacteristics(player)
@@ -471,3 +471,5 @@ while player['ЗДОРОВЬЕ'] > 0:
             break
         else:
             print('Введите корректно свой выбор!')
+else:
+    print('Вы мертвы!')
