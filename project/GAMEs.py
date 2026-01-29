@@ -119,6 +119,8 @@ def upppoint():
     while True:
         varr = input('Ваш выбор и через пробел сколько очков_').split()
         try:
+            if pointr == 0:
+                break
             if pointr - int(varr[1]) >= 0:
                 player[sp[int(varr[0]) - 1]] += int(varr[1])
                 pointr -= int(varr[1])
