@@ -79,7 +79,7 @@ def fight(lvlfloor):
             elif varplayer == '5':
                 inspection = randint(1, 20) + player['ВНИМАТЕЛЬНОСТЬ']
                 if (inspection > monstor.Defense) and (v == 0):
-                    v = 2 + player['ВНИМАТЕЛЬНОСТЬ']
+                    v = 2 + (player['ВНИМАТЕЛЬНОСТЬ'] // 10)
                     print(f'Вы нашли слабое место соперника, теперь ваш урон по нему увеличен на {v}!')
                     player['ВНИМАТЕЛЬНОСТЬ'] -= (3 + lvlfloor)
                     print(f'Ваша Внимательность была уменьшина на {3 + lvlfloor}')
@@ -92,8 +92,8 @@ def fight(lvlfloor):
                 monstor.Attacks(player, 0)
     else:
         print('Вы прошли комнату!')
-        pointr += 5
-        lvlpr += 5
+        pointr += 5 + lvlfloor
+        lvlpr += 5 + lvlfloor
     
 # Функция для создания персонажа
 def СreatingСharacteristics():
