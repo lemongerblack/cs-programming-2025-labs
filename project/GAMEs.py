@@ -126,6 +126,7 @@ def upppoint():
                 break
             elif pointr == 0:
                 print('У вас нет очков опыта, чтобы прокачать навыки')
+                break
             else:
                 print('у вас столько очков нет!')
         except:
