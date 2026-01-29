@@ -164,8 +164,8 @@ class mon1:
             print("Вы отдалели эту тварь!")
             player['СИЛА_АТАКИ'] -= (1 + lvlfloor)
             print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
-            pointr += (lvlfloor) + 1
-            lvlpr += (lvlfloor) + 1
+            pointr += (lvlfloor) + 3
+            lvlpr += (lvlfloor) + 3
         else:
              print("Вам к сожалению не удается нанести урон...")
              player['СИЛА_АТАКИ'] -= 1
