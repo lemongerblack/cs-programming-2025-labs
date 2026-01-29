@@ -214,14 +214,14 @@ def prinvetory():
             print(f'{i} {iventory[str(i)][0]['name']}')
         else:
             print(f'{i} {iventory[str(i)]}')
-    if equipment != []:
-        print(f"Ваша экиперовка - {equipment['name']}")
-    else:
+    if equipment == []:
         print(f"Ваша экиперовка - {equipment}")
-    if weapon != []:
-        print(f"Ваша экиперовка - {weapon['name']}")
     else:
-        print(f"Ваша экиперовка - {weapon}")
+        print(f"Ваша экиперовка - {equipment['name']}")
+    if weapon == []:
+        print(f"Ваше оружие - {weapon}")
+    else:
+        print(f"Ваше оружие - {weapon['name']}")
 
 def popinvetory():
     prinvetory()
