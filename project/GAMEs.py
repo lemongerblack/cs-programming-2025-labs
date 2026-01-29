@@ -48,11 +48,11 @@ def fight(lvlfloor):
                 else:
                     break
             if varplayer == '1':
-                kickplayer = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
+                kickplayer = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10) + lvlplayer
                 if len(weapon) > 0:
-                    damage = 5 + weapon[0]['c'] + (player['СИЛА_АТАКИ'] // 10) + v
+                    damage = 5 + weapon[0]['c'] + (player['СИЛА_АТАКИ'] // 10) + v + lvlplayer
                 else:
-                    damage = 5 + (player['СИЛА_АТАКИ'] // 10) + v
+                    damage = 5 + (player['СИЛА_АТАКИ'] // 10) + v + lvlplayer
                 print(f'Ваша значение атаки {kickplayer}, значение защиты у врага {monstor.Defense}')
                 monstor.TakingDamage(kickplayer, damage)
             elif varplayer == '2':
@@ -60,17 +60,17 @@ def fight(lvlfloor):
                 use(player, monstor)
             elif varplayer == '3':
                 fc = input("Ну давай_")
-                morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10)
-                damag = 3
+                morkick = randint(1, 20) + (player['СИЛА_АТАКИ'] // 10) + (player['ВНИМАТЕЛЬНОСТЬ'] // 10) + v + lvlplayer  
+                damag = 3 + lvlplayer
                 monstor.TakingDamage(morkick, damag)
                 print('Не важно был ли нанесен урон. Знай это было подло... ')
             elif varplayer == '4':
-                attemptplayer = randint(1, 20) + (player['ЛОВКОСТЬ'] // 10)
+                attemptplayer = randint(1, 20) + (player['ЛОВКОСТЬ'] // 10) + lvlplayer
                 attemmonstors = randint(1, 20) + (monstor.Agility // 10) + lvlfloor
                 if attemptplayer > attemmonstors:
                     print("Вы успешно проскачили мимо него")
-                    player['ЛОВКОСТЬ'] -= (4 + lvlfloor)
-                    print(f'ваша ЛОВКОСТЬ была уменьшина на {4 + lvlfloor}')
+                    player['ЛОВКОСТЬ'] -= (2 + lvlfloor)
+                    print(f'ваша ЛОВКОСТЬ была уменьшина на {2 + lvlfloor}')
                     monstor.HP = 0
                 else:
                     print(f'К сожалению {monstor.Name} не пропускает вас')
@@ -92,8 +92,8 @@ def fight(lvlfloor):
                 monstor.Attacks(player, 0)
     else:
         print('Вы прошли комнату!')
-        pointr += 6 + lvlfloor
-        lvlpr += 6 + lvlfloor
+        pointr += 6 + (lvlfloor * 2)
+        lvlpr += 6 + (lvlfloor * 2)
     
 # Функция для создания персонажа
 def СreatingСharacteristics():
@@ -155,13 +155,13 @@ class mon1:
         if (playeratack > self.Defense) and (self.HP - damage != 0):
             self.HP = self.HP - damage
             print(f'Вы нанесли {damage} урона!')
-            player['СИЛА_АТАКИ'] -= (2 + lvlfloor)
-            print(f'Ваша СИЛА_АТАКИ была уменьшина на {2 + lvlfloor}')
+            player['СИЛА_АТАКИ'] -= (1 + lvlfloor)
+            print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
         elif (playeratack > self.Defense) and (self.HP - damage <= 0):
             self.HP = 0
             print("Вы отдалели эту тварь!")
-            player['СИЛА_АТАКИ'] -= (2 + lvlfloor)
-            print(f'Ваша СИЛА_АТАКИ была уменьшина на {2 + lvlfloor}')
+            player['СИЛА_АТАКИ'] -= (1 + lvlfloor)
+            print(f'Ваша СИЛА_АТАКИ была уменьшина на {1 + lvlfloor}')
             pointr += (lvlfloor) + 1
             lvlpr += (lvlfloor) + 1
         else:
