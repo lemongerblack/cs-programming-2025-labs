@@ -92,8 +92,8 @@ def fight(lvlfloor):
                 monstor.Attacks(player, 0)
     else:
         print('Вы прошли комнату!')
-        pointr += 5 + lvlfloor
-        lvlpr += 5 + lvlfloor
+        pointr += 6 + lvlfloor
+        lvlpr += 6 + lvlfloor
     
 # Функция для создания персонажа
 def СreatingСharacteristics():
@@ -409,8 +409,10 @@ while player['ЗДОРОВЬЕ'] > 0:
         lvlpr = 0
         PrCharacteristics(player)
 
-    if countroom >= 9:
+    if countroom >= 6:
         floor()
+        print('Вы поднялись на этаж выше!')
+        pointr += 25
         end += 1
         countroom = 0
 
@@ -427,7 +429,7 @@ while player['ЗДОРОВЬЕ'] > 0:
         if player['ЗДОРОВЬЕ'] <= 0:
             continue
         rn = randint(1, 100)
-        if 75 <= rn:
+        if 65 <= rn:
             iven()
         PrCharacteristics(player)
         countroom += 1
@@ -445,6 +447,7 @@ while player['ЗДОРОВЬЕ'] > 0:
         iven()
         prinvetory()
         PrCharacteristics(player)
+        countroom += 1
     elif roomd[0] == 'ловушек':
         damages = roomtrap(lvlfloor)
         print('Вы вошли в комнату ловушек')
