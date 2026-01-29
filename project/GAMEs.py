@@ -217,11 +217,11 @@ def prinvetory():
     if equipment == []:
         print(f"Ваша экиперовка - {equipment}")
     else:
-        print(f"Ваша экиперовка - {equipment['name']}")
+        print(f"Ваша экиперовка - {equipment[0]['name']}")
     if weapon == []:
         print(f"Ваше оружие - {weapon}")
     else:
-        print(f"Ваше оружие - {weapon['name']}")
+        print(f"Ваше оружие - {weapon[0]['name']}")
 
 def popinvetory():
     prinvetory()
