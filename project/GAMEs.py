@@ -205,9 +205,9 @@ def roomlvl1():
             break
         else:
             print("Введите выринт из указанных")
-# ивентарь и функции для ивенторя
+# ивентарь и функции для инвентаря
 iventory = {'1': [], '2': [], '3': [], '4': [], '5': []}
-# функция для вывода ивенторя, экиперовки и оружия
+# функция для вывода инвентаря, экиперовки и оружия
 def prinvetory():
     print('ваш ивентарь')
     for i in range(1, 6):
@@ -223,7 +223,7 @@ def prinvetory():
         print(f"Ваше оружие - {weapon}")
     else:
         print(f"Ваше оружие - {weapon[0]['name']}")
-# функция для очистки ивентаря
+# функция для очистки инвентаря
 def popinvetory():
     prinvetory()
     while True:
@@ -477,8 +477,8 @@ while player['ЗДОРОВЬЕ'] > 0:
             player['ЗДОРОВЬЕ'] += xl
         PrCharacteristics(player)
         countroom += 1
-    elif roomd[0] == 'сокровищь':
-        print('Вы вошли в комнату сокровищь')
+    elif roomd[0] == 'сокровищ':
+        print('Вы вошли в комнату сокровищ')
         iven()
         prinvetory()
         PrCharacteristics(player)
