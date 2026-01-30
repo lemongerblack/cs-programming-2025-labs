@@ -21,6 +21,8 @@ def floor():
 # функция для повышения уровня персонажа
 def playerup():
     global lvlplayer
+    global mxhp
+    global mxdef
     lvlplayer += 1
     player['ЗДОРОВЬЕ'] += 5 * lvlplayer
     player['ЗАЩИТА'] += 1 + lvlplayer
